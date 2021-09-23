@@ -5,18 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import 'MakingAccountPage.dart';
-
-dynamic postRequest(String email, String password) async {
-  String url = 'http://~~~~~/user/login_parents';
-
-  http.Response response = await http.post(
-    url,
-    headers: <String, String>{
-      'email': email,
-      'password': password,
-    },
-  );
-}
+import 'LoginPage.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -70,10 +59,8 @@ class _FirstPageState extends State<FirstPage> {
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),
                   onPressed: () async {
-                    await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MakingAccountPage()));
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                 ),
               ),

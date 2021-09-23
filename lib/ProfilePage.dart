@@ -12,14 +12,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
-  final List<String> entries = <String>[
-    'Red',
-    'Blue',
-    'Green',
-    'Pink',
-    'Black'
-  ];
-
   var users = new List<User>();
 
   _getUsers() {
@@ -82,33 +74,14 @@ class _ProfilePage extends State<ProfilePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '이름',
-                      isDense: true,
-                      contentPadding: EdgeInsets.all(8),
-                    ),
+                    height: 36,
                   ),
                 ],
               ),
             ),
-            //ListView.builder(
-            //  padding: const EdgeInsets.all(50.0),
-            //  shrinkWrap: true,
-            //  itemCount: entries.length,
-            //  itemBuilder: (BuildContext context, int index) {
-            //    return Container(
-            //      padding: EdgeInsets.all(8.0),
-            //      child: Text('${entries[index]}'),
-            //    );
-            //  },
-            //),
             ListView.separated(
               padding: const EdgeInsets.all(8),
-              itemCount: entries.length,
+              itemCount: users.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
@@ -128,7 +101,7 @@ class _ProfilePage extends State<ProfilePage> {
                           content: Text("Color Removed :  $users[index].name}"),
                           backgroundColor: Colors.blueGrey,
                         );
-                        //ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         setState(() {
                           users.removeAt(index);
                         });
