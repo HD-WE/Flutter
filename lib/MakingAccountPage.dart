@@ -50,7 +50,7 @@ class _MakingAccountPage extends State<MakingAccountPage> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.blue,
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(20.0),
               ),
               child: Align(
                 alignment: Alignment.topLeft,
@@ -111,7 +111,7 @@ class _MakingAccountPage extends State<MakingAccountPage> {
                     textColor: Colors.white,
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
+                        borderRadius: new BorderRadius.circular(200.0)),
                     //onPressed: EmailSendFunction(),
                     onPressed: () async {
                       await Navigator.push(
