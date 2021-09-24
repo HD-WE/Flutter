@@ -25,7 +25,7 @@ class _MakingAccountPage extends State<MakingAccountPage> {
   final password = TextEditingController();
 
   EmailSendFunction() {
-    postRequest(emailText.text, password.text);
+    //postRequest(emailText.text, password.text);
   }
 
   @override

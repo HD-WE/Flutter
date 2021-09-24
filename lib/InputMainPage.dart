@@ -80,15 +80,22 @@ class _InputMainPage extends State<InputMainPage> {
                   minWidth: 200,
                   height: 40,
                   child: FlatButton(
-                      child: Text(
-                        '인증하기',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                      textColor: Colors.white,
-                      color: Colors.blue,
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      onPressed: send()),
+                    child: Text(
+                      '인증하기',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    //onPressed: send(),
+                    onPressed: () async {
+                      await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfilePage()));
+                    },
+                  ),
                 ),
               ],
             ),
