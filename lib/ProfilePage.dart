@@ -2,66 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'dart:convert';
 
 import 'main.dart';
 import 'ListView/API.dart';
 import 'ListView/User.dart';
-
-/*Future<Album> fetchAlbum() async {
-  final response =
-      await http.get(Uri.parse('https://~~~~~/parents/info'));
-
-  if (response.statusCode == 200) {
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to load parents code');
-  }
-}
-
-class Album {
-  final String parents_code;
-
-  Album({
-    this.parents_code,
-  });
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      parents_code: json['parents_code'],
-    );
-  }
-}*/
-Future<Album> fetchAlbum() async {
-  final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-
-  if (response.statusCode == 200) {
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to load album');
-  }
-}
-
-class Album {
-  final int userId;
-  final int id;
-  final String title;
-
-  Album({
-    this.userId,
-    this.id,
-    this.title,
-  });
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
+import 'Api/GetParentsCode.dart';
+import 'Api/PostRemoveChild.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -122,16 +68,17 @@ class _ProfilePage extends State<ProfilePage> {
                 ),
               ],
             ),
-            Row(
+            SizedBox(height: 15.0),
+            Column(
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(12),
                   child: Column(
                     children: <Widget>[
-                      Text('부모코드'),
-                      SizedBox(
-                        height: 36,
-                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text('부모코드'),
+                      )
                     ],
                   ),
                 ),
@@ -139,28 +86,28 @@ class _ProfilePage extends State<ProfilePage> {
                     future: futureAlbum,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return Text(snapshot.data.title);
+                        return Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Center(
+                            child: Text(
+                              snapshot.data.title,
+                              //snapshot.data.parents_code // TODO final code
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        );
                       } else if (snapshot.hasError) {
                         return Text('${snapshot.error}');
                       }
-
                       return const CircularProgressIndicator();
                     }),
               ],
             ),
-            //SizedBox(height: 20),
-            //Container(
-            //  padding: EdgeInsets.all(12),
-            //  child: Column(
-            //    children: <Widget>[
-            //      Text('부모코드'),
-            //      SizedBox(
-            //        height: 36,
-            //      ),
-            //    ],
-            //  ),
-            //),
-
+            SizedBox(height: 30.0),
             ListView.separated(
               padding: const EdgeInsets.all(8),
               itemCount: users.length,
@@ -170,7 +117,6 @@ class _ProfilePage extends State<ProfilePage> {
                   color: Color(0xeee0e0e0),
                   child: ListTile(
                     contentPadding: EdgeInsets.all(10),
-                    //title: Text(entries[index]),
                     title: Text(users[index].name),
                     trailing: IconButton(
                       icon: Icon(
@@ -178,12 +124,11 @@ class _ProfilePage extends State<ProfilePage> {
                         color: Colors.red,
                       ),
                       onPressed: () {
+                        //postRemoveChild(users[index].name); // TODO final code
                         SnackBar snackBar = SnackBar(
-                          //content: Text("Color Removed :  ${entries[index]}"),
                           content: Text("Color Removed :  $users[index].name}"),
                           backgroundColor: Colors.blueGrey,
                         );
-                        //ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         setState(() {
                           users.removeAt(index);
                         });

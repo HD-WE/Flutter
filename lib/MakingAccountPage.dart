@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
 import 'InputMainPage.dart';
-import 'package:http/http.dart' as http;
-import 'ProfilePage.dart';
 
-dynamic postRequest(String email, String password) async {
-  String url = 'http://~~~~~/user/login_parents';
-
-  http.Response response = await http.post(
-    url,
-    headers: <String, String>{
-      'email': email,
-      'password': password,
-    },
-  );
-}
+import 'Api/PostEmailPassword.dart';
 
 class MakingAccountPage extends StatefulWidget {
   @override
@@ -25,7 +13,7 @@ class _MakingAccountPage extends State<MakingAccountPage> {
   final password = TextEditingController();
 
   EmailSendFunction() {
-    //postRequest(emailText.text, password.text);
+    postRequest(emailText.text, password.text);
   }
 
   @override
@@ -112,7 +100,7 @@ class _MakingAccountPage extends State<MakingAccountPage> {
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    //onPressed: EmailSendFunction(),
+                    //onPressed: EmailSendFunction(), //TODO final code
                     onPressed: () async {
                       await Navigator.push(
                           context,
@@ -129,4 +117,3 @@ class _MakingAccountPage extends State<MakingAccountPage> {
     );
   }
 }
-//postRequest('wadad', 'dawda')

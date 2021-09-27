@@ -1,31 +1,31 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'ProfilePage.dart';
+import '../ProfilePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'ChildView.dart';
 
-class InputMainPage extends StatefulWidget {
+class Childlogin extends StatefulWidget {
   @override
-  _InputMainPage createState() => _InputMainPage();
+  _Childlogin createState() => _Childlogin();
 }
 
-class _InputMainPage extends State<InputMainPage> {
+class _Childlogin extends State<Childlogin> {
   bool _isLoading = false;
 
-  final authenticode = TextEditingController();
+  final parents_code = TextEditingController();
 
   send() {
-    signIn(authenticode.text);
+    signIn(parents_code.text);
   }
 
-  signIn(String authenticode) async {
+  signIn(String parents_code) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map data = {
-      'authenticode': authenticode,
+      'parents_code': parents_code,
     };
     var jsonResponse = null;
-    var response =
-        await http.post("http://~~~~~/user/match_authenticode", body: data);
+    var response = await http.post("http://~~~~~/user/login_child", body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       if (jsonResponse != null) {
@@ -56,7 +56,7 @@ class _InputMainPage extends State<InputMainPage> {
             Row(
               children: <Widget>[
                 Text(
-                  '인증코드를 입력해주세요!',
+                  '부모코드를 입력해주세요!',
                   style: TextStyle(fontSize: 16),
                 )
               ],
@@ -67,10 +67,10 @@ class _InputMainPage extends State<InputMainPage> {
             Column(
               children: <Widget>[
                 TextField(
-                  controller: authenticode,
+                  controller: parents_code,
                   decoration: InputDecoration(
                     filled: true,
-                    labelText: '인증코드',
+                    labelText: '부모코드',
                   ),
                 ),
                 SizedBox(
@@ -81,19 +81,17 @@ class _InputMainPage extends State<InputMainPage> {
                   height: 40,
                   child: FlatButton(
                     child: Text(
-                      '인증하기',
+                      '연결하기',
                       style: TextStyle(fontSize: 24),
                     ),
                     textColor: Colors.white,
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    //onPressed: send(), // TODO fianl code
+                    //onPressed: send(), // TODO final code
                     onPressed: () async {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfilePage()));
+                      await Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => ChildView()));
                     },
                   ),
                 ),

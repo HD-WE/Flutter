@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'MakingAccountPage.dart';
 import 'LoginPage.dart';
+import 'ChildPage/ChildLogin.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -101,10 +102,8 @@ class _FirstPageState extends State<FirstPage> {
                 height: 30,
                 child: FlatButton(
                   onPressed: () async {
-                    await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MakingAccountPage()));
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Childlogin()));
                   },
                   child: Text('자녀 로그인',
                       style: TextStyle(
