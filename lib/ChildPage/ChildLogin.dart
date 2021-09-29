@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../ProfilePage.dart';
+import '../screen/ProfilePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'ChildView.dart';
+import 'Bluetooth/main_2.dart';
 
 class Childlogin extends StatefulWidget {
   @override
@@ -91,7 +91,7 @@ class _Childlogin extends State<Childlogin> {
                     //onPressed: send(), // TODO final code
                     onPressed: () async {
                       await Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ChildView()));
+                          MaterialPageRoute(builder: (context) => MyApp()));
                     },
                   ),
                 ),

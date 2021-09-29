@@ -3,11 +3,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
-import 'main.dart';
-import 'ListView/API.dart';
-import 'ListView/User.dart';
-import 'Api/GetParentsCode.dart';
-import 'Api/PostRemoveChild.dart';
+import '../main.dart';
+import '../ListView/API.dart';
+import '../ListView/User.dart';
+import '../Api/GetParentsCode.dart';
+import '../Api/PostRemoveChild.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -94,7 +94,8 @@ class _ProfilePage extends State<ProfilePage> {
                           ),
                           child: Center(
                             child: Text(
-                              snapshot.data.title,
+                              "Moon2304",
+                              //snapshot.data.title,
                               //snapshot.data.parents_code // TODO final code
                               style: TextStyle(color: Colors.black),
                             ),

@@ -1,51 +1,19 @@
 import 'package:flutter/material.dart';
 import 'InputMainPage.dart';
-import 'package:http/http.dart' as http;
-import 'MainPage.dart';
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatefulWidget {
+import '../Api/PostEmailPassword.dart';
+
+class MakingAccountPage extends StatefulWidget {
   @override
-  _LoginPage createState() => _LoginPage();
+  _MakingAccountPage createState() => _MakingAccountPage();
 }
 
-class _LoginPage extends State<LoginPage> {
+class _MakingAccountPage extends State<MakingAccountPage> {
   final emailText = TextEditingController();
   final password = TextEditingController();
 
-  bool _isLoading = false;
-
-  send() {
-    signIn(emailText.text, password.text);
-  }
-
-  signIn(String email, String password) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map data = {
-      'email': email,
-      'password': password,
-    };
-    var jsonResponse = null;
-    var response =
-        await http.post("http://~~~~~/user/match_authenticode", body: data);
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse != null) {
-        setState(() {
-          _isLoading = false;
-        });
-        sharedPreferences.setString("token", jsonResponse['token']);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => MainPage()),
-            (Route<dynamic> route) => false);
-      }
-    } else {
-      setState(() {
-        _isLoading = false;
-      });
-      print(response.body);
-    }
+  EmailSendFunction() {
+    postRequest(emailText.text, password.text);
   }
 
   @override
@@ -59,7 +27,7 @@ class _LoginPage extends State<LoginPage> {
             Row(
               children: <Widget>[
                 Text(
-                  '로그인해주세요!',
+                  '계정을 만들어 주세요!',
                   style: TextStyle(fontSize: 16),
                 ),
               ],
@@ -77,7 +45,7 @@ class _LoginPage extends State<LoginPage> {
                 child: Text(
                   '''
                   안녕하세요.
-                  로그인해주세요!
+                  계정을 생성해주세요!
                   ''',
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -132,10 +100,12 @@ class _LoginPage extends State<LoginPage> {
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    //onPressed: send(), // TODO final code
+                    //onPressed: EmailSendFunction(), //TODO final code
                     onPressed: () async {
-                      await Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MainPage()));
+                      await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => InputMainPage()));
                     },
                   ),
                 ),
@@ -147,4 +117,3 @@ class _LoginPage extends State<LoginPage> {
     );
   }
 }
-//postRequest('wadad', 'dawda')

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'ProfilePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'MainPage.dart';
+import 'LoginPage.dart';
 
 class InputMainPage extends StatefulWidget {
   @override
@@ -90,10 +92,8 @@ class _InputMainPage extends State<InputMainPage> {
                         borderRadius: new BorderRadius.circular(30.0)),
                     //onPressed: send(), // TODO fianl code
                     onPressed: () async {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfilePage()));
+                      await Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
                     },
                   ),
                 ),
