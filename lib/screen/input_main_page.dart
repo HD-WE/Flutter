@@ -1,10 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
-import 'profile.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'first.dart';
 import 'login.dart';
+import 'profile.dart';
 
 class InputMainPage extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class InputMainPage extends StatefulWidget {
 }
 
 class _InputMainPage extends State<InputMainPage> {
-  bool _isLoading = false;
+  bool isLoading = false;
 
   final authenticode = TextEditingController();
 
@@ -25,14 +26,14 @@ class _InputMainPage extends State<InputMainPage> {
     Map data = {
       'authenticode': authenticode,
     };
-    var jsonResponse = null;
+    var jsonResponse;
     var response =
         await http.post("http://~~~~~/user/match_authenticode", body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       if (jsonResponse != null) {
         setState(() {
-          _isLoading = false;
+          isLoading = false;
         });
         sharedPreferences.setString("token", jsonResponse['token']);
         Navigator.of(context).pushAndRemoveUntil(
@@ -41,7 +42,7 @@ class _InputMainPage extends State<InputMainPage> {
       }
     } else {
       setState(() {
-        _isLoading = false;
+        isLoading = false;
       });
       print(response.body);
     }
