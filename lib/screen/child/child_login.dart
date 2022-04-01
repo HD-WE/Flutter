@@ -1,9 +1,10 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../models/main_2.dart';
+
+import 'package:mongsil/screen/profile.dart';
+import 'package:mongsil/models/main_2.dart';
 
 class Childlogin extends StatefulWidget {
   @override
@@ -11,26 +12,26 @@ class Childlogin extends StatefulWidget {
 }
 
 class _Childlogin extends State<Childlogin> {
-  bool _isLoading = false;
+  bool isLoading = false;
 
-  final parents_code = TextEditingController();
+  final parentsCode = TextEditingController();
 
   send() {
-    signIn(parents_code.text);
+    signIn(parentsCode.text);
   }
 
-  signIn(String parents_code) async {
+  signIn(String parentsCode) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map data = {
-      'parents_code': parents_code,
+      'parents_code': parentsCode,
     };
-    var jsonResponse = null;
+    var jsonResponse;
     var response = await http.post("http://~~~~~/user/login_child", body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       if (jsonResponse != null) {
         setState(() {
-          _isLoading = false;
+          isLoading = false;
         });
         sharedPreferences.setString("token", jsonResponse['token']);
         Navigator.of(context).pushAndRemoveUntil(
@@ -39,7 +40,7 @@ class _Childlogin extends State<Childlogin> {
       }
     } else {
       setState(() {
-        _isLoading = false;
+        isLoading = false;
       });
       print(response.body);
     }
@@ -67,7 +68,7 @@ class _Childlogin extends State<Childlogin> {
             Column(
               children: <Widget>[
                 TextField(
-                  controller: parents_code,
+                  controller: parentsCode,
                   decoration: InputDecoration(
                     filled: true,
                     labelText: '부모코드',
@@ -88,7 +89,7 @@ class _Childlogin extends State<Childlogin> {
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    //onPressed: send(), // TODO final code
+                    //onPressed: send(), 
                     onPressed: () async {
                       await Navigator.push(context,
                           MaterialPageRoute(builder: (context) => MyApp()));
