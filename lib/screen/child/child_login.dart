@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../screen/ProfilePage.dart';
+import '../profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Bluetooth/main_2.dart';
+import '../../models/main_2.dart';
 
 class Childlogin extends StatefulWidget {
   @override
