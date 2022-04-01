@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+//import 'dart:convert';
 import 'dart:async';
+import 'package:flutter/material.dart';
 
-import '../main.dart';
-import '../apis/api.dart';
-import '../models/user.dart';
-import '../apis/get_parents_code.dart';
-import '../apis/post_remove_child.dart';
+import 'package:mongsil/screen/state.dart';
+import 'package:mongsil/apis/mungshile_api.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -19,20 +16,14 @@ class _ProfilePage extends State<ProfilePage> {
   var users = new List<User>();
 
   @override
-  void initState() {
-    super.initState();
-    _getUsers();
-    futureAlbum = fetchAlbum();
-  }
-
-  _getUsers() {
-    API.getUsers().then((response) {
-      setState(() {
-        Iterable list = json.decode(response.body);
-        users = list.map((model) => User.fromJson(model)).toList();
-      });
-    });
-  }
+  // _getUsers() {
+  //   API.getUsers().then((response) {
+  //     setState(() {
+  //       Iterable list = json.decode(response.body);
+  //       users = list.map((model) => User.fromJson(model)).toList();
+  //     });
+  //   });
+  // }
 
   dispose() {
     super.dispose();
@@ -41,8 +32,7 @@ class _ProfilePage extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
+      body: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
             SizedBox(height: 40.0),
@@ -62,7 +52,7 @@ class _ProfilePage extends State<ProfilePage> {
                         borderRadius: new BorderRadius.circular(30.0)),
                     onPressed: () async {
                       await Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => FirstPage()));
+                          MaterialPageRoute(builder: (context) => Main()));
                     },
                   ),
                 ),
@@ -96,7 +86,7 @@ class _ProfilePage extends State<ProfilePage> {
                             child: Text(
                               "Moon2304",
                               //snapshot.data.title,
-                              //snapshot.data.parents_code // TODO final code
+                              //snapshot.data.parents_code 
                               style: TextStyle(color: Colors.black),
                             ),
                           ),
@@ -125,7 +115,7 @@ class _ProfilePage extends State<ProfilePage> {
                         color: Colors.red,
                       ),
                       onPressed: () {
-                        //postRemoveChild(users[index].name); // TODO final code
+                        //postRemoveChild(users[index].name); 
                         SnackBar snackBar = SnackBar(
                           content: Text("Color Removed :  $users[index].name}"),
                           backgroundColor: Colors.blueGrey,
@@ -161,7 +151,6 @@ class _ProfilePage extends State<ProfilePage> {
             ),
           ],
         ),
-      ),
     );
   }
 }
