@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'input_main_page.dart';
-import 'package:http/http.dart' as http;
-import 'first.dart';
 import 'dart:convert';
-import '../main.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'state.dart';
+import 'navigator.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,8 +14,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPage extends State<LoginPage> {
   final emailText = TextEditingController();
   final password = TextEditingController();
-
-  bool _isLoading = false;
+  bool isLoading = false;
 
   send() {
     signIn(emailText.text, password.text);
@@ -27,23 +26,23 @@ class _LoginPage extends State<LoginPage> {
       'email': email,
       'password': password,
     };
-    var jsonResponse = null;
+    var jsonResponse;
     var response =
         await http.post("http://~~~~~/user/match_authenticode", body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       if (jsonResponse != null) {
         setState(() {
-          _isLoading = false;
+          isLoading = false;
         });
         sharedPreferences.setString("token", jsonResponse['token']);
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => MainPage()),
+            MaterialPageRoute(builder: (BuildContext context) => Main()),
             (Route<dynamic> route) => false);
       }
     } else {
       setState(() {
-        _isLoading = false;
+        isLoading = false;
       });
       print(response.body);
     }
@@ -133,10 +132,9 @@ class _LoginPage extends State<LoginPage> {
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    //onPressed: send(), // TODO final code
                     onPressed: () async {
                       await Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => FirstPage()));
+                          MaterialPageRoute(builder: (context) => Main()));
                     },
                   ),
                 ),
@@ -148,4 +146,3 @@ class _LoginPage extends State<LoginPage> {
     );
   }
 }
-//postRequest('wadad', 'dawda')
