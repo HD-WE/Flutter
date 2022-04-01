@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
-import 'screen/MainPage.dart';
-import 'screen/ProfilePage.dart';
-import 'screen/UnionPage.dart';
+import 'screen/first.dart';
+import 'screen/profile.dart';
+import 'screen/union.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -46,15 +46,15 @@ class _FirstPageState extends State<FirstPage> {
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            //title: Text('Home'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.login),
-            title: Text('Login'),
+            //title: Text('Login'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            title: Text('Profile'),
+            //title: Text('Profile'),
           )
         ],
       ),

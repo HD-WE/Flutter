@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
+import 'input_main_page.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
-import 'MainPage.dart';
-
-dynamic postRequest(String email, String password) async {
-  String url = 'http://~~~~~/user/login_parents';
-
-  http.Response response = await http.post(
-    url,
-    headers: <String, String>{
-      'email': email,
-      'password': password,
-    },
-  );
-}
+import 'first.dart';
+import 'dart:convert';
+import '../main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,8 +15,38 @@ class _LoginPage extends State<LoginPage> {
   final emailText = TextEditingController();
   final password = TextEditingController();
 
-  EmailSendFunction() {
-    postRequest(emailText.text, password.text);
+  bool _isLoading = false;
+
+  send() {
+    signIn(emailText.text, password.text);
+  }
+
+  signIn(String email, String password) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map data = {
+      'email': email,
+      'password': password,
+    };
+    var jsonResponse = null;
+    var response =
+        await http.post("http://~~~~~/user/match_authenticode", body: data);
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse != null) {
+        setState(() {
+          _isLoading = false;
+        });
+        sharedPreferences.setString("token", jsonResponse['token']);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => MainPage()),
+            (Route<dynamic> route) => false);
+      }
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      print(response.body);
+    }
   }
 
   @override
@@ -39,7 +60,7 @@ class _LoginPage extends State<LoginPage> {
             Row(
               children: <Widget>[
                 Text(
-                  '안녕하세요!',
+                  '로그인해주세요!',
                   style: TextStyle(fontSize: 16),
                 ),
               ],
@@ -53,12 +74,13 @@ class _LoginPage extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Align(
-                alignment: Alignment.center,
+                alignment: Alignment.topLeft,
                 child: Text(
                   '''
-                로그인을 해주세요!
+                  안녕하세요.
+                  로그인해주세요!
                   ''',
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 22,
                     color: Colors.white,
@@ -111,10 +133,10 @@ class _LoginPage extends State<LoginPage> {
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    //onPressed: EmailSendFunction(),
+                    //onPressed: send(), // TODO final code
                     onPressed: () async {
                       await Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MainPage()));
+                          MaterialPageRoute(builder: (context) => FirstPage()));
                     },
                   ),
                 ),

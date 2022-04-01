@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
-
-dynamic postRemoveChild(String name) async {
+Future <dynamic> postRemoveChild(String name) async {
   String url = 'http://~~~~~/user/login_parents';
 
   http.Response response = await http.post(

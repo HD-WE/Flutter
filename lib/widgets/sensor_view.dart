@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:geolocator/geolocator.dart';
-import 'package:mongsil/Api/PostLocation.dart';
+import 'package:mongsil/apis/post_location.dart';
 
 import 'package:flutter/material.dart';
-import 'package:mongsil/ChildPage/Bluetooth/model/sensor_data.dart';
+import 'package:mongsil/models/sensor_data.dart';
 
 class SensorView extends StatefulWidget {
   final SensorData sensorData;

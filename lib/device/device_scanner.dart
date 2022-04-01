@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:mongsil/ChildPage/Bluetooth/model/sensor_data.dart';
+import 'package:mongsil/models/sensor_data.dart';
 
 class DeviceScanner {
   Timer _timer;

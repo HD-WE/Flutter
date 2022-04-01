@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-<<<<<<< HEAD:lib/screen/ProfilePage.dart
-import '../ListView/API.dart';
-import '../ListView/User.dart';
-import '../main.dart';
-=======
 import 'dart:async';
 
-import 'main.dart';
-import 'ListView/API.dart';
-import 'ListView/User.dart';
-import 'Api/GetParentsCode.dart';
-import 'Api/PostRemoveChild.dart';
->>>>>>> master:lib/ProfilePage.dart
+import '../main.dart';
+import '../apis/api.dart';
+import '../models/user.dart';
+import '../apis/get_parents_code.dart';
+import '../apis/post_remove_child.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -22,18 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
-<<<<<<< HEAD:lib/screen/ProfilePage.dart
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-=======
   Future<Album> futureAlbum;
->>>>>>> master:lib/ProfilePage.dart
   var users = new List<User>();
 
   @override
@@ -112,7 +94,8 @@ class _ProfilePage extends State<ProfilePage> {
                           ),
                           child: Center(
                             child: Text(
-                              snapshot.data.title,
+                              "Moon2304",
+                              //snapshot.data.title,
                               //snapshot.data.parents_code // TODO final code
                               style: TextStyle(color: Colors.black),
                             ),

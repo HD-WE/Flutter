@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
-import 'LoginPage.dart';
-import 'MakingAccountPage.dart';
-import 'InputMainPage.dart';
+import 'login.dart';
+import 'making.dart';
+import 'input_main_page.dart';
 
 dynamic postRequest(String email, String password) async {
   String url = 'http://~~~~~/user/login_parents';
