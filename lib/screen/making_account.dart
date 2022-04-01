@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+
 import 'input_main_page.dart';
+import 'package:mongsil/apis/post_email_password.dart';
 
-import '../apis/post_email_password.dart';
-
-class MakingAccountPage extends StatefulWidget {
+class MakingAccount extends StatefulWidget {
   @override
-  _MakingAccountPage createState() => _MakingAccountPage();
+  _MakingAccount createState() => _MakingAccount();
 }
 
-class _MakingAccountPage extends State<MakingAccountPage> {
+class _MakingAccount extends State<MakingAccount> {
   final emailText = TextEditingController();
   final password = TextEditingController();
 
-  EmailSendFunction() {
+  emailSendFunction() {
     postRequest(emailText.text, password.text);
   }
 
@@ -100,7 +100,7 @@ class _MakingAccountPage extends State<MakingAccountPage> {
                     color: Colors.blue,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    //onPressed: EmailSendFunction(), //TODO final code
+                    //onPressed: EmailSendFunction(), 
                     onPressed: () async {
                       await Navigator.push(
                           context,
