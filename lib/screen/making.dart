@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'InputMainPage.dart';
+import 'input_main_page.dart';
 
-import '../Api/PostEmailPassword.dart';
+import '../apis/post_email_password.dart';
 
 class MakingAccountPage extends StatefulWidget {
   @override
