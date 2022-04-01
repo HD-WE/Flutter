@@ -22,7 +22,6 @@ class _SensorViewState extends State<SensorView> {
   @override
   void initState() {
     super.initState();
-    // TODO final code
     timer = Timer.periodic(Duration(seconds: 15), (Timer t) {
       _getCurrentLocation();
       postLocation(
