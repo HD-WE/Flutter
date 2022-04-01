@@ -4,10 +4,10 @@ import 'dart:convert';
 import 'dart:async';
 
 import '../main.dart';
-import '../ListView/API.dart';
-import '../ListView/User.dart';
-import '../Api/GetParentsCode.dart';
-import '../Api/PostRemoveChild.dart';
+import '../apis/api.dart';
+import '../models/user.dart';
+import '../apis/get_parents_code.dart';
+import '../apis/post_remove_child.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
