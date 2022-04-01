@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'InputMainPage.dart';
+import 'input_main_page.dart';
 import 'package:http/http.dart' as http;
-import 'MainPage.dart';
+import 'first.dart';
 import 'dart:convert';
 import '../main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
