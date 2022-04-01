@@ -1,11 +1,8 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import 'login.dart';
-import 'making.dart';
+import 'making_account.dart';
 import 'input_main_page.dart';
 
 dynamic postRequest(String email, String password) async {
@@ -18,12 +15,6 @@ dynamic postRequest(String email, String password) async {
       'password': password,
     },
   );
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: UnionPage(),
-  ));
 }
 
 class UnionPage extends StatefulWidget {
@@ -89,7 +80,7 @@ class _UnionPageState extends State<UnionPage> {
                     await Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MakingAccountPage()));
+                            builder: (context) => MakingAccount()));
                   },
                   child: Text('새로운 계정 만들기',
                       style: TextStyle(

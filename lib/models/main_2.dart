@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-
-import 'bluetooth_off_screen.dart';
-import 'sensor_list_screen.dart';
+import 'package:mongsil/models/sensor_list_screen.dart';
+import 'package:mongsil/models/bluetooth_off_screen.dart';
 
 int sec = 0;
 

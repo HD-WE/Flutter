@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
-/*Future<Album> fetchAlbum() async { // TODO final code
+/*Future<Album> fetchAlbum() async { 
   final response = await http.get(Uri.parse('https://~~~~~/parents/info'));
 
   if (response.statusCode == 200) {

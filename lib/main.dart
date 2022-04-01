@@ -1,63 +1,23 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
-
-import 'screen/first.dart';
-import 'screen/profile.dart';
-import 'screen/union.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: FirstPage(),
-  ));
+import 'package:mongsil/screen/state.dart';
+//import 'package:mongsil/widgets/bottom_navigate_bar.dart';
+void main(List<String> args) {
+  runApp(const MyApp());
 }
 
-class FirstPage extends StatefulWidget {
-  FirstPage({Key key, this.title}) : super(key: key);
-  final String title;
+class MyApp extends StatefulWidget {
+  const MyApp({ Key key }) : super(key: key);
 
   @override
-  _FirstPageState createState() => _FirstPageState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _FirstPageState extends State<FirstPage> {
-  int _currentIndex = 0;
-  final List<Widget> _children = [MainPage(), UnionPage(), ProfilePage()];
-  void _onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.blue,
-        selectedItemColor: Colors.amber,
-        unselectedItemColor: Colors.white.withOpacity(.60),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        onTap: _onTap,
-        currentIndex: _currentIndex,
-        items: [
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            //title: Text('Home'),
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.login),
-            //title: Text('Login'),
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            //title: Text('Profile'),
-          )
-        ],
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home:Main()
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mongsil/widgets/sensor_view.dart';
 
-import '../device/device_scanner.dart';
+import 'package:mongsil/device/device_scanner.dart';
 
 class SensorListScreen extends StatefulWidget {
   @override
